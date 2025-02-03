@@ -1,4 +1,4 @@
-package `4_graph`
+package algorithm.graph.dijkstra
 
 import java.util.*
 
