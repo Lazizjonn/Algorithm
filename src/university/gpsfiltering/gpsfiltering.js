@@ -2,7 +2,7 @@ const filters = {
     activityType: "walking",
     accuracy: 20,
     minimumDistance: 1,
-    maximumDistance: 50,
+    maximumDistance: 200,
     minimumSpeed: 1,
     maximumSpeed: 10,
     minimumTime: 10,
@@ -31,10 +31,12 @@ function flatEarthDistance(latitude1, longitude1, latitude2, longitude2) {
 }
 
 function gpsFiltering(listOfPoints, filters) {
+
     let filteredList = listOfPoints.filter((item, index, array) => {
 
         if (filters.activityType && item.activity_type !== filters.activityType) {
             // TODO: We can put some logic according to activity type
+            return true;
         }
 
         if (item.accuracy > filters.accuracy) {
@@ -57,16 +59,11 @@ function gpsFiltering(listOfPoints, filters) {
             }
 
 
-            const distance = flatEarthDistance(
-                prevItem.latitude,
-                prevItem.longitude,
-                item.latitude,
-                item.longitude
-            );
+            const distanceBetweenTwoPoints = flatEarthDistance(prevItem.latitude, prevItem.longitude, item.latitude, item.longitude);
 
 
-            if (distance < filters.minimumDistance || distance > filters.maximumDistance) {
-                 return false;
+            if (distanceBetweenTwoPoints < filters.minimumDistance || distanceBetweenTwoPoints > filters.maximumDistance) {
+                return false;
             }
         }
         return true;
