@@ -30,3 +30,4 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/src/university/test1/large_graph.txt

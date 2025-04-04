@@ -11,19 +11,7 @@ const life = Life();
 studentData.name = "Laziz";
 studentData.surname = "Suyun";
 
-console.log(`${studentData.name}`);
-console.log(`${studentData.surname}`);
-
-work.doWork();
-work.rest();
-
-life.changeName();
-
-life.listen();
-// studentData.friend.newName = "Ken"
-console.log(`${studentData.newName}`)
-studentData.name = "Laziz 2";
-studentData.surname = "Suyun 2";
+console.log(`Initial name: ${studentData.friend.newName}`)
 
 life.listen();
 work.doWork();

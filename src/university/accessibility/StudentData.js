@@ -5,10 +5,17 @@ export function StudentData() {
         const state = {
             name: "",
             surname: "",
+            subjects: [],
             friend: {
-                newName: "Lory"
+                _newName: "Lory",
+                get newName() {
+                    return this._newName
+                },
+                set newName(value) {
+                    if (value) this._newName = value
+                    else console.error("Invalid name")
+                },
             },
-            subjects: []
         };
 
         instance = {
@@ -21,7 +28,6 @@ export function StudentData() {
                 }
                 state.name = value;
             },
-
             get surname() {
                 return state.surname;
             },
@@ -41,15 +47,15 @@ export function StudentData() {
                 }
                 state.subjects = value;
             },
-
-            get newName() {
-                return state.friend.newName;
-            },
-            set newName(value) {
-                if (typeof value !== "string") {
-                    throw new Error("newName must be a string");
-                }
-                state.friend.newName = value;
+            get friend() {
+                return {
+                    get newName() {
+                        return state.friend.newName;
+                    },
+                    set newName(value) {
+                        state.friend.newName = value;
+                    }
+                };
             }
         };
     }
